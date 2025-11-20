@@ -1,0 +1,43 @@
+# Python virtual environments 
+venv/
+.env/
+env/
+
+# Python bytecode / caches 
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# OS / IDE metadata
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Model artifacts / logs 
+artifacts/
+*.joblib
+*.pkl
+*.h5
+*.pt
+*.onnx
+*.log
+wandb/
+mlruns/
+
+# Temporary / runtime files 
+tmp/
+logs/
+*.csv~
+*.tmp
+*.bak
+
+# Notebooks checkpoints 
+.ipynb_checkpoints/
+
+# Frontend caches 
+node_modules/
+build/
+dist/
+
