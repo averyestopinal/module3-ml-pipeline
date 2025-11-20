@@ -107,4 +107,4 @@ def preprocess(train_df, test_df, numeric_cols, categorical_cols):
 End cited block
 """
 
-preprocess(train_df, test_df, numeric_cols, categorical_cols)
+# preprocess(train_df, test_df, numeric_cols, categorical_cols)
