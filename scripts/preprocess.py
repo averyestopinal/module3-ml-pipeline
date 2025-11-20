@@ -17,6 +17,9 @@ The below block of code was derived from AIPI503 - Ed Lessons Day 4 Challenge
 This course was taught by Dr. Daniel E. Davis, Ph.D.
 """
 
+if "Total.Cup.Points" not in df.columns:
+    raise ValueError(f"ERROR: Required target column '{"Total.Cup.Points"}' is missing from the dataset.")
+
 X = df.drop(columns=["Total.Cup.Points"])
 y = df["Total.Cup.Points"]
 
