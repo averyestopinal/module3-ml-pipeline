@@ -1,11 +1,8 @@
 import pandas as pd
-import pandas as pd
 import numpy as np
 from sklearn.model_selection import train_test_split
 from sklearn.impute import SimpleImputer
 from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from scipy import sparse
-from sklearn.ensemble import RandomForestRegressor
 
 df = pd.read_csv('data/preprocessed/preprocessed_data.csv')
 
@@ -19,6 +16,7 @@ categorical_cols = ["Species", "Owner", "Country.of.Origin", "Mill", "ICO.Number
 The below block of code was derived from AIPI503 - Ed Lessons Day 4 Challenge
 This course was taught by Dr. Daniel E. Davis, Ph.D.
 """
+
 X = df.drop(columns=["Total.Cup.Points"])
 y = df["Total.Cup.Points"]
 

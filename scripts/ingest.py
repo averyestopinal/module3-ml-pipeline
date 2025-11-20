@@ -1,11 +1,4 @@
 import pandas as pd
-import pandas as pd
-import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.impute import SimpleImputer
-from sklearn.preprocessing import StandardScaler, OneHotEncoder
-from scipy import sparse
-from sklearn.ensemble import RandomForestRegressor
 
 df = pd.read_csv("data/raw/raw_data.csv")
 
@@ -42,7 +35,7 @@ df.drop(columns=["Lot.Number"], inplace=True)
 # Owner.1 is only missing 7 entries, drop rows where na.
 df.dropna(subset=["Owner.1"], inplace=True)
 
-# Quakers is only missing 1 entry, so throw out row where missing value
+# Quakers is only missing 1 entry, so throw out row where missing value.
 df.dropna(subset=["Quakers"], inplace=True)
 
 """
