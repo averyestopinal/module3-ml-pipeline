@@ -41,11 +41,11 @@ The below block of code was derived from AIPI503 - Ed Lessons Day 4 Challenge
 This course was taught by Dr. Daniel E. Davis, Ph.D.
 """
 
-if "Total.Cup.Points" not in df.columns:
+if target_col not in df.columns:
     raise ValueError(f"ERROR: Required target column '{"Total.Cup.Points"}' is missing from the dataset.")
 
-X = df.drop(columns=["Total.Cup.Points"])
-y = df["Total.Cup.Points"]
+X = df.drop(columns=target_col)
+y = df[target_col]
 
 # Splitting data. 20% test, 80% train
 train_df, test_df, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
