@@ -1,12 +1,6 @@
-# Core Python libraries
-pandas
-numpy
-scikit-learn
-joblib
-PyYAML
-
-# For serving & front-end 
-fastapi
-uvicorn
-streamlit
-requests
+joblib==1.5.2
+numpy==2.3.5
+pandas==2.3.3
+PyYAML==6.0.2
+PyYAML==6.0.3
+scikit_learn==1.7.2
