@@ -1,0 +1,10 @@
+data:
+  # url empty for now so script will default to local file; modify later as needed
+  url: ""
+  local_path: "data/raw/raw_data.csv"
+  preprocessed_path: "data/preprocessed/preprocessed_data.csv"
+  target: "Total.Cup.Points"
+# model details to be added later during train.py work 
+train:
+  test_size: 0.2
+  random_state: 42
