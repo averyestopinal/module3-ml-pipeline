@@ -1,0 +1,12 @@
+# Core Python libraries
+pandas
+numpy
+scikit-learn
+joblib
+PyYAML
+
+# For serving & front-end 
+fastapi
+uvicorn
+streamlit
+requests
