@@ -1,3 +1,9 @@
+"""
+ingest.py: 
+- Reads raw dataset from Kaggle CSV.
+- Drops unwanted/missing columns.
+- Saves data/preprocessed/preprocessed_data.csv.
+"""
 import pandas as pd
 import os
 import yaml

@@ -8,6 +8,7 @@ data:
 train:
   test_size: 0.2
   random_state: 42
+
 paths:
   X_train: "data/cleaned/X_train.csv"
   X_test: "data/cleaned/X_test.csv"
