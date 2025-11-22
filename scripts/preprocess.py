@@ -55,6 +55,9 @@ categorical_cols = [
     "Certification.Body", "Certification.Address", "Certification.Contact", "unit_of_measurement"
 ]
 
+# drop accidental index columns created by previous saves
+df = df.loc[:, ~df.columns.str.contains(r'^Unnamed')]
+
 # making sure columns exist
 missing_num = [c for c in numeric_cols if c not in df.columns]
 missing_cat = [c for c in categorical_cols if c not in df.columns]

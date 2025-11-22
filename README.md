@@ -12,7 +12,7 @@ source venv/bin/activate        # Windows: venv\Scripts\activate
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
-
+# Testing/running scripts
 To test preprocess.py: run `python scripts/preprocess.py`
 Confirm all output files exist by running: 
 `ls -l data/cleaned/X_train.csv data/cleaned/X_test.csv data/cleaned/y_train.csv data/cleaned/y_test.csv artifacts/preprocessor.joblib` 
@@ -22,3 +22,24 @@ pip install pytest
 
 pytest -q
 ```
+
+To run the server: 
+```
+# run server 
+uvicorn app.server:app --reload --port 8000 
+# health check 
+curl http://127.0.0.1:8000/health
+# sample predict_named payload JSON
+curl -X POST "http://127.0.0.1:8000/predict_named" \
+  -H "Content-Type: application/json" \
+  -d '{"rows":[ {"Aroma":7.5,"Flavor":6.0,"Number.of.Bags":1,"Category.One.Defects":0} ] }'
+```
+
+# Notes / Gotchas
+- config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
+- The server will try to load artifacts/preprocessor.joblib and artifacts/model.joblib. If those are missing the server returns deterministic dummy predictions (development mode).
+
+# References: 
+We used ChatGPT (OpenAI GPT-5.1) to assist with code snippets. 
+Portions of the preprocessing and most of server code were assisted by ChatGPT (OpenAI GPT-5.1). Authors verified and adapted the generated code. 
+Authors fully understand what the code does and how to apply the knowledge in the future. 
