@@ -13,23 +13,24 @@ pip install --upgrade pip
 pip install -r requirements.txt
 ```
 # Testing/running scripts
-To test preprocess.py: run `python scripts/preprocess.py`
+To test preprocess.py: 
+```
+python scripts/preprocess.py
+```
 Confirm all output files exist by running: 
-`ls -l data/cleaned/X_train.csv data/cleaned/X_test.csv data/cleaned/y_train.csv data/cleaned/y_test.csv artifacts/preprocessor.joblib` 
+```
+ls -l data/cleaned/X_train.csv data/cleaned/X_test.csv data/cleaned/y_train.csv data/cleaned/y_test.csv artifacts/preprocessor.joblib
+```
 We wrote a unit test script tests/test_preprocessor.py, to run it: 
 ```
 pip install pytest
-
 pytest -q
 ```
 
-To run the server: 
+To run the server, do health check use sample predict payload: 
 ```
-# run server 
 uvicorn app.server:app --reload --port 8000 
-# health check 
 curl http://127.0.0.1:8000/health
-# sample predict_named payload JSON
 curl -X POST "http://127.0.0.1:8000/predict_named" \
   -H "Content-Type: application/json" \
   -d '{"rows":[ {"Aroma":7.5,"Flavor":6.0,"Number.of.Bags":1,"Category.One.Defects":0} ] }'
