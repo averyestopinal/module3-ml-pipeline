@@ -5,7 +5,7 @@ import pandas as pd
 import requests
 import numpy as np
 
-API_URL = "http://127.0.0.1:8000/predict"
+API_URL = "http://127.0.0.1:8000/predict_named"
 
 # point to config.yaml so server uses same paths as scripts
 CONFIG_PATH = os.path.join(os.path.dirname(__file__), "..", "config.yaml")
@@ -46,9 +46,69 @@ empty_df = pd.DataFrame([{col: "" for col in UI_COLS}])
 
 def cup_points_estimator(known_values_input):
     """
-    This is not working
+    Accepts the Gradio Dataframe value (likely a pandas.DataFrame, list-of-lists, or list-of-dicts).
+    Tries to call the prediction API (POST /predict_named -> {"rows":[{...}]}) and return the first prediction.
+    If the API request fails, falls back to a simple heuristic:
+      - convert any numeric-looking columns to numbers and return the row-wise mean (or 0 if no numeric data).
     """
-    return 0
+    # helper: convert various Gradio input types into a pandas DataFrame with UI_COLS as columns
+    try:
+        # If it's already a DataFrame
+        if isinstance(known_values_input, pd.DataFrame):
+            df = known_values_input.copy()
+        # If Gradio returned a list of dicts (records)
+        elif isinstance(known_values_input, list) and known_values_input and isinstance(known_values_input[0], dict):
+            df = pd.DataFrame(known_values_input)
+        # If it's a list of lists (rows)
+        elif isinstance(known_values_input, list):
+            try:
+                df = pd.DataFrame(known_values_input, columns=UI_COLS)
+            except Exception:
+                # fallback: construct DataFrame and trim/pad columns
+                df = pd.DataFrame(known_values_input)
+        # Otherwise try to coerce
+        else:
+            df = pd.DataFrame([known_values_input])
+    except Exception:
+        # If all conversions fail, return a safe default
+        return 0.0
+
+    # Ensure DataFrame contains the UI_COLS (in the same order). Fill missing cols with empty strings.
+    for col in UI_COLS:
+        if col not in df.columns:
+            df[col] = ""
+    df = df[UI_COLS]
+
+    # Prepare payload: convert NaN -> None so JSON is clean
+    payload_rows = df.where(pd.notnull(df), None).to_dict(orient="records")
+    payload = {"rows": payload_rows}
+
+    # Try calling the API; short timeout to keep UI responsive
+    try:
+        resp = requests.post(API_URL, json=payload, timeout=3.0)
+        resp.raise_for_status()
+        data = resp.json()
+        # Expect {"predictions": [...]} - return first prediction if present
+        preds = data.get("predictions")
+        if preds and isinstance(preds, (list, tuple)) and len(preds) > 0:
+            # cast to float for Gradio Number output
+            return float(preds[0])
+    except Exception:
+        # any failure falls through to fallback heuristic below
+        pass
+
+    # ----- Fallback heuristic: numeric mean of row values -----
+    # Try to coerce columns to numeric where possible; non-numeric columns become NaN
+    numeric_df = df.apply(lambda col: pd.to_numeric(col, errors="coerce"))
+    # If there are numeric columns, return the mean across numeric columns for the first row
+    if numeric_df.shape[1] > 0 and numeric_df.notna().any(axis=1).any():
+        row0 = numeric_df.iloc[0]
+        valid = row0.dropna()
+        if len(valid) > 0:
+            return float(valid.mean())
+
+    # If no numeric info available, return a conservative default (e.g., 0.0)
+    return 0.0
 
 
 # Gradio interface that takes interie into table and outputs integer using cup_points_estimator
