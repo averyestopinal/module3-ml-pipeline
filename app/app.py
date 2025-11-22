@@ -52,10 +52,22 @@ Reference:
 def cup_points_estimator(known_values_list):
 
     # Convert known_vales_list to Python dict for the API to handle
-    row_dict = known_values_list.to_dict(orient="records")
+    if isinstance(known_values_list, pd.DataFrame):
+        df = known_values_list.copy()
+    else:
+        # Convert list-of-lists to DataFrame using UI_COLS
+        df = pd.DataFrame(known_values_list, columns=UI_COLS)
 
-    # Payload for API call is known_values_list converted to row_dict
-    payload = {"rows": row_dict}
+        # Build filled rows so all EXPECTED_COLS are present
+    filled_rows = []
+    for _, row in df.iterrows():
+        full_row = {col: None for col in EXPECTED_COLS}
+        for key, val in row.items():
+            if key in full_row:
+                full_row[key] = val if val != "" else None
+        filled_rows.append(full_row)
+
+    payload = {"rows": filled_rows}
 
     try:
         # Making API call using API_KEY defined above and json payload
