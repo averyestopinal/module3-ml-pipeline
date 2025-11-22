@@ -36,6 +36,12 @@ curl -X POST "http://127.0.0.1:8000/predict_named" \
   -d '{"rows":[ {"Aroma":7.5,"Flavor":6.0,"Number.of.Bags":1,"Category.One.Defects":0} ] }'
 ```
 
+To test the UI locally:
+'''
+python app/app.py
+'''
+Copy URL from terminal into browser to ensure the app is functioning locally.
+
 # Notes / Gotchas
 - config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
 - The server will try to load artifacts/preprocessor.joblib and artifacts/model.joblib. If those are missing the server returns deterministic dummy predictions (development mode).
