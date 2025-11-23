@@ -9,6 +9,7 @@ pandas==2.2.2
 gradio==3.41.0
 requests==2.31.0
 wandb==0.23.0
+supabase==2.24.0
 
 # test / dev tools
 pytest>=7.4
