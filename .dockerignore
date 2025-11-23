@@ -1,0 +1,14 @@
+venv/
+__pycache__/
+*.pyc
+data/raw
+.data/
+.git
+.gitignore
+.vscode
+.env
+node_modules
+pytest_cache
+.DS_Store
+artifacts/
+.ipynb_checkpoints/

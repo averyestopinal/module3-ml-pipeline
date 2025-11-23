@@ -43,6 +43,43 @@ To train the model:
 python train.py
 '''
 Ensure artifacts/model.joblib was built
+# 🐳 Docker and Testing 
+## Build the image 
+```
+# from the project root
+docker build -t coffee-api:dev .
+```
+
+## Run the container 
+```
+docker run --rm -p 8000:8000 \
+  -v "$(pwd)/artifacts":/app/artifacts \
+  -v "$(pwd)/config.yaml":/app/config.yaml \
+  -v "$(pwd)/data":/app/data \
+  coffee-api:dev
+```
+Then open:
+	•	Health check: http://127.0.0.1:8000/health￼
+	•	Interactive docs: http://127.0.0.1:8000/docs￼
+
+If artifacts are missing, the container automatically runs scripts/preprocess.py to generate them.
+
+## Run tests inside the container 
+
+To verify reproducibility of preprocessing and data pipeline:
+```
+docker run --rm -v "$(pwd)":/app -w /app coffee-api:dev python -m pytest -q
+```
+Expect output: 
+```
+...
+3 passed in ~0.9s
+```
+
+## Docker-related notes: 
+- Ports: container exposes 8000 (mapped to host port 8000)
+- Artifacts (preprocessor.joblib, model.joblib) are mounted from the host for faster iteration
+
 
 # Notes / Gotchas
 - config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
