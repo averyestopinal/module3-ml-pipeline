@@ -1,5 +1,6 @@
-fastapi==0.95.2
-uvicorn[standard]==0.22.0
+fastapi>=0.95
+uvicorn[standard]>=0.22.0
+pydantic>=1.10
 PyYAML==6.0
 joblib==1.3.2
 scikit-learn==1.7.2
@@ -7,3 +8,6 @@ numpy==1.26.4
 pandas==2.2.2
 gradio==3.41.0
 requests==2.31.0
+
+# test / dev tools
+pytest>=7.4
