@@ -43,6 +43,13 @@ To train the model:
 python train.py
 '''
 Ensure artifacts/model.joblib was built
+
+To run the UI app start the server and type in CLI: 
+```
+python app/frontend.py
+```
+Open link in browser
+
 # 🐳 Docker and Testing 
 ## Build the image 
 ```
