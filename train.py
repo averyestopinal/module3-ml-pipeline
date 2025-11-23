@@ -1,0 +1,38 @@
+"""
+train.py: 
+- Reads data/cleaned/.
+- Trains RandomForestRegressor model on data
+- Saves artifacts/model.joblib.
+"""
+
+import joblib
+import yaml
+from sklearn.ensemble import RandomForestRegressor
+import pandas as pd
+
+with open("config.yaml", "r") as f:
+    config = yaml.safe_load(f)
+
+# Using yaml to define paths
+xtrain_path = config["paths"]["X_train"]
+xtest_path = config["paths"]["X_test"]
+ytrain_path = config["paths"]["y_train"]
+ytest_path = config["paths"]["y_test"]
+
+# Load X_train, X_test, y_train, y_test from data/cleaned
+X_train = pd.read_csv(xtrain_path)
+X_test = pd.read_csv(xtest_path)
+y_train = pd.read_csv(ytrain_path)
+y_test = pd.read_csv(ytest_path)
+
+# Model selection
+model = RandomForestRegressor(n_estimators=100)
+
+# Fitting model to X_train, y_train
+model.fit(X_train, y_train)
+
+# Printing model acccuracy: Returns 94.7%
+# print(model.score(X_test, y_test))
+
+# Saving model to artifacts
+joblib.dump(model, "artifacts/model.joblib")
