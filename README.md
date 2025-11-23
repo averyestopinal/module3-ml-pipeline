@@ -1,6 +1,9 @@
 # Module3Project
 
 
+## Model
+We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.7% with 100 estimators.
+
 ## Data
 For this project, we are using data on coffee quality found here:
 https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
@@ -41,6 +44,13 @@ To test the UI locally:
 python app/app.py
 '''
 Copy URL from terminal into browser to ensure the app is functioning locally.
+
+To train the model:
+'''
+python train.py
+'''
+Ensure artifacts/model.joblib was built
+
 
 # Notes / Gotchas
 - config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
