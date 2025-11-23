@@ -1,0 +1,37 @@
+{
+  "os": "macOS-26.0.1-arm64-arm-64bit",
+  "python": "CPython 3.12.7",
+  "startedAt": "2025-11-23T03:58:26.067658Z",
+  "program": "/Users/averyestopinal/Desktop/510/Project3/Module3Project/scripts/train.py",
+  "codePath": "scripts/train.py",
+  "codePathLocal": "scripts/train.py",
+  "git": {
+    "remote": "https://github.com/averyestopinal/Module3Project.git",
+    "commit": "ab39843f9ecf4b9d3ad0ec17d713c82b6b07d668"
+  },
+  "email": "ace40@duke.edu",
+  "root": "/Users/averyestopinal/Desktop/510/Project3/Module3Project",
+  "host": "Averys-MacBook-Pro-3.local",
+  "executable": "/opt/anaconda3/bin/python",
+  "cpu_count": 10,
+  "cpu_count_logical": 10,
+  "disk": {
+    "/": {
+      "total": "994662584320",
+      "used": "321174855680"
+    }
+  },
+  "memory": {
+    "total": "17179869184"
+  },
+  "apple": {
+    "name": "Apple M1 Pro",
+    "ecpuCores": 2,
+    "pcpuCores": 8,
+    "gpuCores": 16,
+    "memoryGb": 16,
+    "swapTotalBytes": "3221225472",
+    "ramTotalBytes": "17179869184"
+  },
+  "writerId": "j09npzblxc4vo4dsarl7jn19xg014xnu"
+}

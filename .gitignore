@@ -23,7 +23,6 @@ artifacts/
 *.pt
 *.onnx
 *.log
-wandb/
 mlruns/
 
 # Temporary / runtime files 

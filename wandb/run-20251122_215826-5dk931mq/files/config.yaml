@@ -1,0 +1,59 @@
+_wandb:
+    value:
+        cli_version: 0.23.0
+        e:
+            j09npzblxc4vo4dsarl7jn19xg014xnu:
+                apple:
+                    ecpuCores: 2
+                    gpuCores: 16
+                    memoryGb: 16
+                    name: Apple M1 Pro
+                    pcpuCores: 8
+                    ramTotalBytes: "17179869184"
+                    swapTotalBytes: "3221225472"
+                codePath: scripts/train.py
+                codePathLocal: scripts/train.py
+                cpu_count: 10
+                cpu_count_logical: 10
+                disk:
+                    /:
+                        total: "994662584320"
+                        used: "321174855680"
+                email: ace40@duke.edu
+                executable: /opt/anaconda3/bin/python
+                git:
+                    commit: ab39843f9ecf4b9d3ad0ec17d713c82b6b07d668
+                    remote: https://github.com/averyestopinal/Module3Project.git
+                host: Averys-MacBook-Pro-3.local
+                memory:
+                    total: "17179869184"
+                os: macOS-26.0.1-arm64-arm-64bit
+                program: /Users/averyestopinal/Desktop/510/Project3/Module3Project/scripts/train.py
+                python: CPython 3.12.7
+                root: /Users/averyestopinal/Desktop/510/Project3/Module3Project
+                startedAt: "2025-11-23T03:58:26.067658Z"
+                writerId: j09npzblxc4vo4dsarl7jn19xg014xnu
+        m: []
+        python_version: 3.12.7
+        t:
+            "1":
+                - 5
+                - 53
+                - 105
+            "2":
+                - 5
+                - 53
+                - 105
+            "3":
+                - 2
+                - 16
+            "4": 3.12.7
+            "5": 0.23.0
+            "12": 0.23.0
+            "13": darwin-arm64
+dataset:
+    value: cleaned coffee data
+model_type:
+    value: RandomForestRegressor
+n_estimators:
+    value: 100
