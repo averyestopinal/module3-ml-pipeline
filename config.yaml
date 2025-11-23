@@ -60,7 +60,7 @@ paths:
   X_test: "data/cleaned/X_test.csv"
   y_train: "data/cleaned/y_train.csv"
   y_test: "data/cleaned/y_test.csv"
-  
+
 artifacts:
   model: "artifacts/model.joblib"
   preprocessor: "artifacts/preprocessor.joblib"
@@ -70,3 +70,7 @@ artifacts:
 api_url:
   FastAPI: "http://127.0.0.1:8000/predict_named"
 
+supabase: 
+  url: "https://rhmhtqfrqdjrinkyeirv.supabase.co"
+  key: "sb_secret_p8B-Ms8XpCHabjG_h3zhDA_FjeGSzOS"
+  bucket: "preprocessed"
