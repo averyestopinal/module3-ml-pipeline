@@ -50,6 +50,13 @@ y_pred = model.predict(X_test)
 # r2 = r2_score(y_test, y_pred)
 # mape = np.mean(np.abs((y_test - y_pred) / y_test)) * 100
 
+# print(f"R² Score: {r2:.4f}")
+# print(f"RMSE: {rmse:.4f}")
+# print(f"MAE: {mae:.4f}")
+# print(f"MAPE: {mape:.2f}%")
+
+#------------------------------------END CITED BLOCK-----------------------
+
 """
 Perfornance:
 (base) averyestopinal@Averys-MacBook-Pro-3 Module3Project % python train.py
@@ -58,14 +65,6 @@ RMSE: 0.5282
 MAE: 0.3005
 MAPE: 0.37%
 """
-
-print(f"R² Score: {r2:.4f}")
-print(f"RMSE: {rmse:.4f}")
-print(f"MAE: {mae:.4f}")
-print(f"MAPE: {mape:.2f}%")
-
-#------------------------------------END CITED BLOCK-----------------------
-
 
 # Saving model to artifacts
 joblib.dump(model, "artifacts/model.joblib")
