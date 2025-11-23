@@ -7,6 +7,8 @@ We used a RandomForestRegression for the model. Test size is 20% of dataset. Mod
 For this project, we are using data on coffee quality found here:
 https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
 
+Preprocessed data is stored in SupaBase here: https:/rhmhtqfrqdjrinkyeirv.supabase.co
+
 # Setup:
 ```
 python -m venv venv
