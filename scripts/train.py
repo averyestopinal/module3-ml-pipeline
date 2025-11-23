@@ -43,9 +43,9 @@ run = wandb.init(
 with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
-MODEL_PATH = config["paths"]["artifacts"]["model"]
-METRICS_PATH = config["paths"]["artifacts"]["metrics"]
-PREPROCESSOR_PATH = config["paths"]["artifacts"]["preprocessor"]
+MODEL_PATH = config["artifacts"]["model"]
+METRICS_PATH = config["artifacts"]["metrics"]
+PREPROCESSOR_PATH = config["artifacts"]["preprocessor"]
 
 
 # Using yaml to define paths
