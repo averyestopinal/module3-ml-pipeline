@@ -1,5 +1,7 @@
 # Module3Project
 
+## Model
+We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.7% with 100 estimators.
 
 ## Data
 For this project, we are using data on coffee quality found here:
@@ -36,6 +38,11 @@ curl -X POST "http://127.0.0.1:8000/predict_named" \
   -d '{"rows":[ {"Aroma":7.5,"Flavor":6.0,"Number.of.Bags":1,"Category.One.Defects":0} ] }'
 ```
 
+To train the model:
+'''
+python train.py
+'''
+Ensure artifacts/model.joblib was built
 # 🐳 Docker and Testing 
 ## Build the image 
 ```
