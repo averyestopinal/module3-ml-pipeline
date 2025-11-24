@@ -4,6 +4,12 @@
 For this project, we are using data on coffee quality found here:
 https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
 
+The cleaned coffee dataset is publicly hosted on Google Cloud Storage for reproducibility.
+The preprocessing pipeline automatically downloads it via the data.url field in config.yaml.
+
+Cleaned data in cloud:
+https://storage.googleapis.com/coffee-quality-data/preprocessed_data.csv
+
 # Setup:
 ```
 python -m venv venv
