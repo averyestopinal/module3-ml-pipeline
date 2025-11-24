@@ -21,6 +21,19 @@ The Gradio-based frontend is deployed at:
 
 # Cloud Deployment: 
 The FastAPI container is deployed on Google Cloud Run at:
+Base URL:
+https://coffee-api-354131048216.us-central1.run.app
+
+Endpoints:
+	•	/health – Health check
+	•	/predict_named – POST endpoint for predictions
+	
+Example cURL:
+```
+curl -X POST "https://coffee-api-354131048216.us-central1.run.app/predict_named" \
+  -H "Content-Type: application/json" \
+  -d '{"rows":[{"Aroma":7.5,"Flavor":6.0,"Body":5.5,"Acidity":8.0,"Sweetness":9.0,"Balance":7.0,"Aftertaste":6.5,"Clean.Cup":9.0}]}'
+```
 
 # Setup:
 ```
