@@ -1,3 +1,16 @@
+---
+title: "Coffee Cup Points Estimator"
+emoji: "☕️"
+colorFrom: "brown"
+colorTo: "green"
+sdk: "gradio"
+sdk_version: "5.49.1"
+app_file: "app.py"
+pinned: false
+---
+
+
+
 # Module3Project
 
 # Overview 
@@ -171,6 +184,8 @@ The dataset may contain sampling bias by country or producer, and model predicti
 - **Google Cloud Storage (GCS):** Stores the cleaned dataset (`preprocessed_data.csv`) publicly.
 - **Google Cloud Run:** Hosts and serves the FastAPI model API container.
 - **Weights & Biases (W&B):** Tracks model training metrics and performance.
+
+# Hugging Face
 
 # 🧠 Authors
 - Eugenia Tate
