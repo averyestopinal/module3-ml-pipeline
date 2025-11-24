@@ -3,7 +3,7 @@
 ## Model
 We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.2% with 100 estimators.
 
-W and B tracks model performance. Data can be found in wandb/run.../wandb-summary.json. Data is presented like this:
+W and B tracks model performance. Data can be found in wandb/run.../files/wandb-summary.json. Data is presented like this:
 
 {
   "_timestamp":1.763876781125257e+09,
