@@ -1,5 +1,8 @@
 # Module3Project
 
+# Overview
+Predict coffee quality scores based on sensory attributes using a RandomForest model and an MLOps pipeline.
+
 ## Data
 For this project, we are using data on coffee quality found here:
 https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
@@ -7,8 +10,17 @@ https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
 The cleaned coffee dataset is publicly hosted on Google Cloud Storage for reproducibility.
 The preprocessing pipeline automatically downloads it via the data.url field in config.yaml.
 
-Cleaned data in cloud:
+Cleaned data is hosted in Google Cloud Storage:
 https://storage.googleapis.com/coffee-quality-data/preprocessed_data.csv
+
+# Architecture 
+Data → Cloud (GCS) → Preprocess (ColumnTransformer) → Train (RandomForest) → FastAPI → Gradio frontend
+
+# Frontend 
+The Gradio-based frontend is deployed at: 
+
+# Cloud Deployment: 
+The FastAPI container is deployed on Google Cloud Run at:
 
 # Setup:
 ```
@@ -91,7 +103,9 @@ The 94.2% R2 value shows very good fit and a cup score that correlates strongly 
 ```
 # from the project root
 docker build -t coffee-api:dev .
+docker run --rm -e WANDB_MODE=offline -p 8000:8000 coffee-api:dev
 ```
+Note: Use WANDB_MODE=offline (as shown above) when running inside Docker or CI to prevent login prompts from Weights & Biases. If you have a W&B API key, set it via WANDB_API_KEY=your_key to enable cloud logging.
 
 ## Run the container 
 ```
@@ -123,12 +137,16 @@ Expect output:
 - Ports: container exposes 8000 (mapped to host port 8000)
 - Artifacts (preprocessor.joblib, model.joblib) are mounted from the host for faster iteration
 
+# Limitations & Ethics
+Predictions depend on sensory ratings, which are subjective.
+The model is not suitable for real-world evaluation of coffee quality without expert calibration.
 
 # Notes / Gotchas
 - config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
 - The server will try to load artifacts/preprocessor.joblib and artifacts/model.joblib. If those are missing the server returns deterministic dummy predictions (development mode).
 
 # References: 
-We used ChatGPT (OpenAI GPT-5.1) to assist with code snippets. 
+- OpenAI. (2025). ChatGPT (Version 5.1) [Large language model]. https://chat.openai.com We used ChatGPT (OpenAI GPT-5.1) to assist with code snippets. 
 Portions of the preprocessing and most of server code were assisted by ChatGPT (OpenAI GPT-5.1). Authors verified and adapted the generated code. 
-Authors fully understand what the code does and how to apply the knowledge in the future. 
+Authors fully understand what the code does and how to apply the knowledge in the future.
+- Kaggle Coffee Quality Data (Volpatto, 2020) https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi 
