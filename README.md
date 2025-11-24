@@ -24,7 +24,9 @@ Data → Cloud (GCS) → Preprocess (ColumnTransformer) → Train (RandomForest)
 └───────────────┘       └─────────────┘       └───────────────┘       └──────────────┘
 ```
 # Frontend 
-The Gradio-based frontend is deployed at: 
+The Gradio-based frontend is deployed at: https://huggingface.co/spaces/averye-duke/Module3
+
+Hugging face was used to deploy the app.
 
 # Cloud Deployment: 
 The FastAPI container is deployed on Google Cloud Run at:
