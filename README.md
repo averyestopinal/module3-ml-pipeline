@@ -18,10 +18,11 @@ https://storage.googleapis.com/coffee-quality-data/preprocessed_data.csv
 Data → Cloud (GCS) → Preprocess (ColumnTransformer) → Train (RandomForest) → FastAPI → Gradio frontend
 
 ## Frontend Architecture 
+```
 ┌───────────────┐       ┌─────────────┐       ┌───────────────┐       ┌──────────────┐
 │  Kaggle Data  │  →    │  GCS Bucket │  →    │  FastAPI (API)│  →    │ Gradio UI    │
 └───────────────┘       └─────────────┘       └───────────────┘       └──────────────┘
-
+```
 # Frontend 
 The Gradio-based frontend is deployed at: 
 
