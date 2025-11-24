@@ -1,7 +1,31 @@
 # Module3Project
 
 ## Model
-We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.7% with 100 estimators.
+We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.2% with 100 estimators.
+
+W and B tracks model performance. Data can be found in wandb/run.../wandb-summary.json. Data is presented like this:
+
+{
+  "_timestamp":1.763876781125257e+09,
+  "_wandb":{"runtime":2},
+  "_runtime":2,
+  "_step":0,
+  "R2":0.9424069488737763,
+  "RMSE":0.5528660703704987,
+  "MAE":0.31615526315789416,
+  "MAPE":0.39006294567905464
+}
+
+These perfomance metrics are also stored in artifacts.metrics.json like this:
+
+{
+    "R2": 0.9424069488737761,
+    "RMSE": 0.5528660703704994,
+    "MAE": 0.31615526315789455,
+    "MAPE": 0.39006294567905514
+}
+
+The 94.2% R2 value shows very good fit and a cup score that correlates strongly with the other columns. The RMSE 0f 0.55 shows a small predicition error and therefore reinforces the model's high preformance.  The MAE of 0.314 also shows a small error to the actual cup points. MAPE shows average percentage error of 39% which shows medium accuracy. This could be due to the small size dataset the model was trained on.
 
 ## Data
 For this project, we are using data on coffee quality found here:
@@ -40,13 +64,19 @@ curl -X POST "http://127.0.0.1:8000/predict_named" \
 
 To train the model:
 '''
-python train.py
+python scripts/train.py
 '''
 Ensure artifacts/model.joblib was built
 
 To run the UI app start the server and type in CLI: 
 ```
 python app/frontend.py
+Enter 3 when prompted:
+  wandb: (1) Create a W&B account
+  wandb: (2) Use an existing W&B account
+  wandb: (3) Don't visualize my results
+  My personal login is needed to sign in here to update to wandb website
+
 ```
 Open link in browser
 
