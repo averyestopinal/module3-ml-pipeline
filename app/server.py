@@ -21,7 +21,7 @@ from fastapi import FastAPI, HTTPException   # api framework and exception handl
 from pydantic import BaseModel   # import to define and validate JSON request body
 import joblib   # to load joblib object 
 import numpy as np
-import os, yaml
+import os, yaml, math
 from typing import List, Dict, Any, Optional   # import for type hints 
 from fastapi import Body
 import pandas as pd
@@ -146,6 +146,7 @@ def health():
 def _predict_with_artifacts(X):
     """
     Accepts X: either pandas.DataFrame (preferred) or 2D array-like (n_rows x n_features)
+    Returns a JSON-safe Python list: floats where finite, None for NaN/Inf/unconvertible.
     """
      # If X is DataFrame, pass directly to PREPROCESSOR.transform 
     if isinstance(X, pd.DataFrame):
@@ -171,7 +172,29 @@ def _predict_with_artifacts(X):
     else:
         # if not model loaded, return dummy: mean of row 
         preds = np.mean(X_proc, axis=1)
-    return preds.tolist()
+    # coerce to python list and make JSON-safe:
+    safe_preds = []
+    # convert to 1-D python list
+    try:
+        arr = np.asarray(preds).ravel().tolist()
+    except Exception:
+        # fallback: try to coerce single value
+        arr = [preds]
+
+    for p in arr:
+        try:
+            v = float(p)
+            if not math.isfinite(v):
+                # NaN / Inf -> null in JSON
+                safe_preds.append(None)
+            else:
+                safe_preds.append(v)
+        except Exception:
+            # not convertible -> null
+            safe_preds.append(None)
+
+    return safe_preds
+    # return preds.tolist()
 
 # Predict endpoint: converts JSON rows into Numpy array and returns predictions as JSON list 
 # good for batch predictions
