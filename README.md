@@ -1,7 +1,8 @@
 # Module3Project
 
-# Overview
-Predict coffee quality scores based on sensory attributes using a RandomForest model and an MLOps pipeline.
+# Overview 
+Predict coffee quality scores based on sensory attributes using a RandomForest model and an MLOps pipeline. 
+This project demonstrates an end-to-end MLOps pipeline: data ingestion, preprocessing, model training, containerization, cloud deployment, and front-end integration.
 
 # Data
 For this project, we are using data on coffee quality found here:
@@ -15,6 +16,11 @@ https://storage.googleapis.com/coffee-quality-data/preprocessed_data.csv
 
 # Architecture 
 Data → Cloud (GCS) → Preprocess (ColumnTransformer) → Train (RandomForest) → FastAPI → Gradio frontend
+
+## Frontend Architecture 
+┌───────────────┐       ┌─────────────┐       ┌───────────────┐       ┌──────────────┐
+│  Kaggle Data  │  →    │  GCS Bucket │  →    │  FastAPI (API)│  →    │ Gradio UI    │
+└───────────────┘       └─────────────┘       └───────────────┘       └──────────────┘
 
 # Frontend 
 The Gradio-based frontend is deployed at: 
@@ -69,9 +75,9 @@ curl -X POST "http://127.0.0.1:8000/predict_named" \
 ```
 
 To train the model:
-'''
+```
 python scripts/train.py
-'''
+```
 Ensure artifacts/model.joblib was built
 
 To run the UI app start the server and type in CLI: 
@@ -155,13 +161,23 @@ Expect output:
 # Limitations & Ethics
 Predictions depend on sensory ratings, which are subjective.
 The model is not suitable for real-world evaluation of coffee quality without expert calibration.
+The dataset may contain sampling bias by country or producer, and model predictions should not be used for commercial grading without calibration against expert cuppers.
 
 # Notes / Gotchas
 - config.yaml may include data.input_columns — if present the server will require/expect those columns and reindex incoming payloads automatically. 
 - The server will try to load artifacts/preprocessor.joblib and artifacts/model.joblib. If those are missing the server returns deterministic dummy predictions (development mode).
 
+# ☁️ Cloud Services Used
+- **Google Cloud Storage (GCS):** Stores the cleaned dataset (`preprocessed_data.csv`) publicly.
+- **Google Cloud Run:** Hosts and serves the FastAPI model API container.
+- **Weights & Biases (W&B):** Tracks model training metrics and performance.
+
+# 🧠 Authors
+- Eugenia Tate
+- Avery Estopinal
+
 # References: 
 - OpenAI. (2025). ChatGPT (Version 5.1) [Large language model]. https://chat.openai.com We used ChatGPT (OpenAI GPT-5.1) to assist with code snippets. 
-Portions of the preprocessing and most of server code were assisted by ChatGPT (OpenAI GPT-5.1). Authors verified and adapted the generated code. 
+Portions of the preprocessing, frontend, train and most of server code were assisted by ChatGPT (OpenAI GPT-5.1). Authors verified and adapted the generated code. 
 Authors fully understand what the code does and how to apply the knowledge in the future.
 - Kaggle Coffee Quality Data (Volpatto, 2020) https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi 
