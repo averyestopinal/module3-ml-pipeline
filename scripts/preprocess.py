@@ -31,6 +31,7 @@ with open("config.yaml", "r") as f:
     config = yaml.safe_load(f)
 
 raw_path = config["data"]["local_path"]
+url = config["data"].get("url", "")
 preprocessed_path = config["data"]["preprocessed_path"]
 target_col = config["data"]["target"]
 test_size = config["train"]["test_size"]
@@ -40,7 +41,11 @@ random_state = config["train"]["random_state"]
 End cited block
 """
 
-df = pd.read_csv(preprocessed_path)
+if url:
+    print(f"Reading cleaned dataset from {url}")
+    df = pd.read_csv(url)
+else:
+    df = pd.read_csv(preprocessed_path)
 
 numeric_cols = [
     "Number.of.Bags", "Category.One.Defects", "Category.Two.Defects", "Aroma", "Flavor",
