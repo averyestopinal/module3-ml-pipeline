@@ -3,7 +3,7 @@
 # Overview
 Predict coffee quality scores based on sensory attributes using a RandomForest model and an MLOps pipeline.
 
-## Data
+# Data
 For this project, we are using data on coffee quality found here:
 https://www.kaggle.com/datasets/volpatto/coffee-quality-database-from-cqi
 
@@ -86,7 +86,7 @@ Enter 3 when prompted:
 ```
 Open link in browser
 
-## Model
+# Model
 We used a RandomForestRegression for the model. Test size is 20% of dataset. Model has accuracy of 94.2% with 100 estimators.
 
 W and B tracks model performance. Data can be found in wandb/run.../files/wandb-summary.json. Data is presented like this:
