@@ -18,6 +18,9 @@ RUN pip install --no-cache-dir -r /app/requirements.txt
 # copy project files
 COPY . /app
 
+# explicitly ensure artifacts are copied
+COPY artifacts /app/artifacts
+
 # make start.sh executable
 RUN chmod +x /app/start.sh
 

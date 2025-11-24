@@ -16,8 +16,6 @@ __pycache__/
 *.swp
 
 # Model artifacts / logs 
-artifacts/
-*.joblib
 *.pkl
 *.h5
 *.pt
