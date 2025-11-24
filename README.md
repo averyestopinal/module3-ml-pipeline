@@ -173,6 +173,10 @@ The dataset may contain sampling bias by country or producer, and model predicti
 - **Weights & Biases (W&B):** Tracks model training metrics and performance.
 
 # Hugging Face
+App Link:
+https://huggingface.co/spaces/averye-duke/Module3
+Repositiory:
+git clone https://huggingface.co/spaces/averye-duke/Module3
 
 # 🧠 Authors
 - Eugenia Tate
