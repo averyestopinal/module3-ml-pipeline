@@ -25,8 +25,10 @@ Base URL:
 https://coffee-api-354131048216.us-central1.run.app
 
 Endpoints:
-	•	/health – Health check
-	•	/predict_named – POST endpoint for predictions
+
+- /health – Health check
+- /predict_named – POST endpoint for predictions
+- /docs - API documentation (Swagger) 
 	
 Example cURL:
 ```
