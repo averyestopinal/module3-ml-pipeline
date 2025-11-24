@@ -23,7 +23,9 @@ Data → Cloud (GCS) → Preprocess (ColumnTransformer) → Train (RandomForest)
 └───────────────┘       └─────────────┘       └───────────────┘       └──────────────┘
 
 # Frontend 
-The Gradio-based frontend is deployed at: 
+The Gradio-based frontend is deployed at: https://huggingface.co/spaces/averye-duke/Module3
+
+Hugging face was used to deploy the app.
 
 # Cloud Deployment: 
 The FastAPI container is deployed on Google Cloud Run at:
@@ -171,12 +173,6 @@ The dataset may contain sampling bias by country or producer, and model predicti
 - **Google Cloud Storage (GCS):** Stores the cleaned dataset (`preprocessed_data.csv`) publicly.
 - **Google Cloud Run:** Hosts and serves the FastAPI model API container.
 - **Weights & Biases (W&B):** Tracks model training metrics and performance.
-
-# Hugging Face
-App Link:
-https://huggingface.co/spaces/averye-duke/Module3
-Repositiory:
-git clone https://huggingface.co/spaces/averye-duke/Module3
 
 # 🧠 Authors
 - Eugenia Tate
